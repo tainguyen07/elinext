@@ -19,23 +19,27 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.register(UINib(nibName: "SlideCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SlideCollectionViewCell")
 
         pageControl.hidesForSinglePage = true
+        let temp = Int(collectionView.bounds.height/(collectionView.bounds.width/6 - 12) - 2)*7
+        pageControl.numberOfPages = totalItems > 2*temp ? 3 : 2
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        let temp = Int(collectionView.bounds.height/(collectionView.bounds.width/6 - 12) - 2)*7
+        return totalItems > 2*temp ? 3 : 2
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let temp = collectionView.bounds.height/(collectionView.bounds.width/6 - 12) - 2
-        let temp2 = Int(temp)*7
+        let temp = Int(collectionView.bounds.height/(collectionView.bounds.width/6 - 12) - 2)*7
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SlideCollectionViewCell", for: indexPath) as! SlideCollectionViewCell
         if indexPath.row == 0 {
-            cell.numberItems = temp2
+            cell.numberItems = temp
         } else if indexPath.row == 1 {
-            cell.numberItems = totalItems - temp2
+            cell.numberItems = totalItems > 2*temp ? temp : totalItems - temp
+        } else {
+            cell.numberItems = totalItems > 2*temp ? totalItems - 2*temp : 0
         }
         return cell
     }
