@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tjF-Ry-ET0">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Page View Controller-->
+        <scene sceneID="bfa-bn-QVD">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="tjF-Ry-ET0" customClass="PageViewController" customModule="elinext" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r6q-wT-mCc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131" y="-919"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -15,30 +24,9 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvX-g2-GZh">
-                                <rect key="frame" x="0.0" y="12.666666666666686" width="393" height="852"/>
-                            </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="sl1-XB-Pcg">
-                                <rect key="frame" x="138.66666666666666" y="772" width="116" height="26"/>
-                                <color key="backgroundColor" red="0.20392156859999999" green="0.58823529409999997" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </pageControl>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="sl1-XB-Pcg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="EBZ-pV-xwS"/>
-                            <constraint firstItem="gvX-g2-GZh" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="KoS-6I-uVW"/>
-                            <constraint firstItem="gvX-g2-GZh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="eSJ-ci-22l"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sl1-XB-Pcg" secondAttribute="bottom" constant="20" id="nXl-kZ-hge"/>
-                            <constraint firstItem="gvX-g2-GZh" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="wPm-2U-4ce"/>
-                            <constraint firstItem="gvX-g2-GZh" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="zAC-hM-Clw"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="pageControl" destination="sl1-XB-Pcg" id="3qP-HC-rmM"/>
-                        <outlet property="scrollView" destination="gvX-g2-GZh" id="Oal-ml-XLd"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
