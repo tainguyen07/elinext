@@ -12,6 +12,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     var totalItems = 140
+    var maxItemInPerPage = 50
+    private let numberItemInRow = 7
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -19,27 +21,29 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.register(UINib(nibName: "SlideCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SlideCollectionViewCell")
 
         pageControl.hidesForSinglePage = true
-        let temp = Int(collectionView.bounds.height/(collectionView.bounds.width/6 - 12) - 2)*7
-        pageControl.numberOfPages = totalItems > 2*temp ? 3 : 2
+        let heightOfItem = (Int(collectionView.bounds.width) - 2*6)/numberItemInRow // 2pt, 6 item, 7 item in row
+        let itemsInColumn = (Int(collectionView.bounds.height) + 2) / ( 2 + heightOfItem)
+        maxItemInPerPage = Int(numberItemInRow*itemsInColumn)
+        pageControl.numberOfPages = totalItems > maxItemInPerPage*2 ? 3 : 2
+        collectionView.reloadData()
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let temp = Int(collectionView.bounds.height/(collectionView.bounds.width/6 - 12) - 2)*7
-        return totalItems > 2*temp ? 3 : 2
+        pageControl.numberOfPages = totalItems > maxItemInPerPage*2 ? 3 : 2
+        return totalItems > 2*maxItemInPerPage ? 3 : 2
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let temp = Int(collectionView.bounds.height/(collectionView.bounds.width/6 - 12) - 2)*7
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SlideCollectionViewCell", for: indexPath) as! SlideCollectionViewCell
         if indexPath.row == 0 {
-            cell.numberItems = temp
+            cell.numberItems = maxItemInPerPage
         } else if indexPath.row == 1 {
-            cell.numberItems = totalItems > 2*temp ? temp : totalItems - temp
+            cell.numberItems = totalItems > 2*maxItemInPerPage ? maxItemInPerPage : totalItems - maxItemInPerPage
         } else {
-            cell.numberItems = totalItems > 2*temp ? totalItems - 2*temp : 0
+            cell.numberItems = totalItems > 2*maxItemInPerPage ? totalItems - 2*maxItemInPerPage : 0
         }
         return cell
     }
@@ -50,5 +54,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+    }
+    
+    @IBAction func addNewImageButtonTapped(_ sender: Any) {
+        totalItems = totalItems + 1
+        collectionView.reloadData()
+    }
+    
+    @IBAction func reloadAllImageButtonTapped(_ sender: Any) {
+        totalItems = 140
+        collectionView.reloadData()
     }
 }

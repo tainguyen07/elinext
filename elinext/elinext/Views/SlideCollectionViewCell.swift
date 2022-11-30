@@ -10,7 +10,11 @@ import UIKit
 class SlideCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var numberItems = 0
+    var numberItems = 0 {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionView.delegate = self

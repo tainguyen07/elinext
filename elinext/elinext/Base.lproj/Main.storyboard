@@ -22,8 +22,24 @@
                                 <rect key="frame" x="138.66666666666666" y="772" width="116" height="26"/>
                                 <color key="backgroundColor" red="0.20392156859999999" green="0.58823529409999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKP-2K-sks">
+                                <rect key="frame" x="343" y="74" width="35" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="+"/>
+                                <connections>
+                                    <action selector="addNewImageButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YnP-mC-hbd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBR-bf-OK9">
+                                <rect key="frame" x="15" y="74" width="100" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Reload All"/>
+                                <connections>
+                                    <action selector="reloadAllImageButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5jS-Lo-qzR"/>
+                                </connections>
+                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-92-ehq">
-                                <rect key="frame" x="0.0" y="59" width="393" height="703"/>
+                                <rect key="frame" x="0.0" y="124" width="393" height="638"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Xv7-CS-Sfe">
                                     <size key="itemSize" width="128" height="128"/>
@@ -49,10 +65,14 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="WJr-1d-XvJ" secondAttribute="bottom" constant="20" id="2o0-Mr-zQv"/>
                             <constraint firstItem="WJr-1d-XvJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3Dv-8b-b5M"/>
+                            <constraint firstItem="jeo-92-ehq" firstAttribute="top" secondItem="ZKP-2K-sks" secondAttribute="bottom" constant="15" id="FmE-ZN-xT6"/>
                             <constraint firstItem="WJr-1d-XvJ" firstAttribute="top" secondItem="jeo-92-ehq" secondAttribute="bottom" constant="10" id="I68-nj-J2A"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jeo-92-ehq" secondAttribute="trailing" id="JdR-IA-uKd"/>
+                            <constraint firstItem="ZKP-2K-sks" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="MH1-ZA-DIN"/>
+                            <constraint firstItem="nBR-bf-OK9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="Ore-hp-zhj"/>
+                            <constraint firstItem="nBR-bf-OK9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="Zn3-B8-gc8"/>
                             <constraint firstItem="jeo-92-ehq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eMl-l1-e4e"/>
-                            <constraint firstItem="jeo-92-ehq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vql-mK-s7G"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZKP-2K-sks" secondAttribute="trailing" constant="15" id="yQM-M8-uIX"/>
                         </constraints>
                     </view>
                     <connections>
