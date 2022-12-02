@@ -16,9 +16,11 @@ class ImageCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         img.layer.cornerRadius = 7
-        setData()
     }
     func setData() {
+        img.image = nil
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         if let url = URL(string: "https://loremflickr.com/200/200") {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data, error == nil else { return }
