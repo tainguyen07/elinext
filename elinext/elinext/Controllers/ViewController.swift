@@ -14,17 +14,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var totalItems = 140
     var maxItemInPerPage = 50
     private let numberItemInRow = 7
+    private var numberSlide = 2
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "SlideCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SlideCollectionViewCell")
 
+        pageControl.layer.cornerRadius = 5
         pageControl.hidesForSinglePage = true
         let heightOfItem = (Int(collectionView.bounds.width) - 2*6)/numberItemInRow // 2pt, 6 item, 7 item in row
         let itemsInColumn = (Int(collectionView.bounds.height) + 2) / ( 2 + heightOfItem)
         maxItemInPerPage = Int(numberItemInRow*itemsInColumn)
-        pageControl.numberOfPages = totalItems > maxItemInPerPage*2 ? 3 : 2
+        numberSlide = totalItems/maxItemInPerPage + 1
+        pageControl.numberOfPages = numberSlide
         collectionView.reloadData()
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -32,8 +35,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        pageControl.numberOfPages = totalItems > maxItemInPerPage*2 ? 3 : 2
-        return totalItems > 2*maxItemInPerPage ? 3 : 2
+        return numberSlide
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -58,7 +60,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBAction func addNewImageButtonTapped(_ sender: Any) {
         totalItems = totalItems + 1
+        numberSlide = totalItems/maxItemInPerPage + 1
+        pageControl.numberOfPages = numberSlide
         collectionView.reloadData()
+        //Trigger
     }
     
     @IBAction func reloadAllImageButtonTapped(_ sender: Any) {
